@@ -8,9 +8,43 @@ export const FETCH_WEATHER = 'FETCH_WEATHER';
 export function fetchWeather(city) {
   const url = `${ROOT_URL}&q=${city},ca`;
   const request = axios.get(url);
-
+  // console.log('Request: ', request);
   return {
     type: FETCH_WEATHER,
     payload: request
   };
 }
+
+//  --------------------------------
+// | Action flows enter middlewares |
+//  --------------------------------
+//                 |
+// ================================== Redux-Promise Middleware
+//                 V
+//  --------------------------------
+// | Does the action have a promise |
+// | as a payload?                  |
+//  --------------------------------
+//          |                   |
+//          V                   V
+//      -----                 -----
+//     | Yes |               | No  |
+//      -----                 -----
+//          |                   |
+//          V                   V
+//  ------------------    --------------------
+// | Stop this action |  | Let it go through  |
+//  ------------------    --------------------
+//          |                               |
+//          V                               |
+//  --------------------------------        |
+// | After promise resolves         |       |
+// | after the ajax request finishes|       |
+// | , create a new action          |       |
+// | and send it to reducers        |       |
+//  --------------------------------        |
+//          |                               |
+//          |                               V
+//          |---------------> ---------------
+//                           |    Reducers   |
+//                            ---------------
