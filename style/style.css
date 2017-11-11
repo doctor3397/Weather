@@ -8,10 +8,14 @@ td, th {
 }
 
 svg {
-  height: 150px;
+  height: 200px;
 }
 
-
-.table td {
+/*.table td {
   width: 25%;
+}*/
+
+td:nth-of-type(2), td:nth-of-type(2) > div {
+  height: 200px;
+  width: 300px;
 }
