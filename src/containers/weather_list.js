@@ -12,7 +12,7 @@ class WeatherList extends Component {
     const { lon, lat } = cityData.city.coord;
     // const lon = cityData.city.coord.lon;
     // const lat = cityData.city.coord.lat;
-    // console.log(temps);
+    // console.log(temps); [291.17, 289.62, 288.6...]
 
     return (
       <tr key={name}>
@@ -45,7 +45,7 @@ class WeatherList extends Component {
   }
 }
 
-function mapStateToProps(state) { // { weather }
+function mapStateToProps(state) { // ({ weather })
   return { weather: state.weather }; // return { weather };
 }
 
